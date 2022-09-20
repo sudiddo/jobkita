@@ -7,7 +7,7 @@ import Link from "next/link";
 
 function Header() {
   return (
-    <div className="bg-white h-12 z-50 w-screen px-5 flex flex-row items-center justify-between fixed shadow-md">
+    <div className="bg-white h-12 lg:h-16 z-50 w-screen px-5 lg:px-10 flex flex-row items-center justify-between fixed shadow-md">
       <Link href={"/"}>
         <Image
           src={Logo}
@@ -48,7 +48,7 @@ function Header() {
       </div>
       <div className="hidden lg:flex flex-row">
         <a
-          className="mr-3 text-lg font-semibold hover:opacity-75 text-black"
+          className="mr-10 text-lg font-semibold hover:opacity-75 text-black"
           href="/jobs"
         >
           For Employees

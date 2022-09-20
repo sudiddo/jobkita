@@ -10,7 +10,7 @@ const Layout: FC<Props> = ({ children }) => {
   return (
     <div className="flex flex-col flex-1">
       <Header />
-      <div className="mt-12 flex flex-1">{children}</div>
+      <div className="mt-12 lg:mt-16 flex flex-1">{children}</div>
       <Footer />
     </div>
   );

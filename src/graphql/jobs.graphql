@@ -1,0 +1,22 @@
+query getJobs {
+  jobs {
+    id
+    title
+    cities {
+      id
+      name
+    }
+    description
+    company {
+      id
+      name
+      logoUrl
+      websiteUrl
+    }
+    tags {
+      id
+      name
+    }
+    postedAt
+  }
+}

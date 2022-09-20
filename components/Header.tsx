@@ -9,13 +9,15 @@ function Header() {
   return (
     <div className="bg-white h-12 lg:h-16 z-50 w-screen px-5 lg:px-10 flex flex-row items-center justify-between fixed shadow-md">
       <Link href={"/"}>
-        <Image
-          src={Logo}
-          alt="logo"
-          width={"100px"}
-          height="30px"
-          objectFit="contain"
-        />
+        <a>
+          <Image
+            src={Logo}
+            alt="logo"
+            width={"100px"}
+            height="30px"
+            objectFit="contain"
+          />
+        </a>
       </Link>
       <div className="fixed right-5 lg:hidden">
         <Menu as="div" className={"relative inline-block"}>

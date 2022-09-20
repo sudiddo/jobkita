@@ -1,11 +1,44 @@
-import React from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { GrLocation, GrSearch } from "react-icons/gr";
 import Link from "next/link";
 import Image from "next/image";
 import Starting from "src/assets/starting.png";
 import Finding from "src/assets/finding.png";
+import { getCountries, queryClient } from "src/api";
+import { dehydrate, useQuery } from "react-query";
+import { Country } from "src/generated/graphql";
+import { Combobox, Transition } from "@headlessui/react";
+
+export async function getServerSideProps() {
+  await queryClient.prefetchQuery(["jobs"], () => getCountries());
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+}
 
 const Home = () => {
+  const countryQuery = useQuery(["countries"], () => getCountries());
+  const [selectedCountry, setSelectedCountry] = useState<Country>();
+  const [country, setCountry] = useState("");
+  const [role, setRole] = useState("");
+  const countries = countryQuery.data?.countries;
+
+  useEffect(() => {
+    if (countryQuery.data) {
+      setSelectedCountry(countryQuery.data.countries[0] as Country);
+    }
+  }, [countryQuery.data]);
+
+  const filteredCountry =
+    country === ""
+      ? countries
+      : countries?.filter((data) => {
+          return data.name.toLowerCase().includes(country.toLowerCase());
+        });
+
   return (
     <div className="flex flex-col pb-10 min-h-screen min-w-full">
       {/* Banner */}
@@ -33,15 +66,51 @@ const Home = () => {
             <GrSearch />
             <input
               placeholder="Cari Lowongan"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
               className="ml-2 bg-white w-full outline-none h-8 lg:h-10 rounded-r-md"
             />
           </div>
-          <div className="mt-3 lg:mt-0 flex flex-row items-center border border-black pl-2 rounded-md w-full lg:w-[500px]">
+          <div className="relative mt-3 lg:mt-0 flex flex-row items-center border border-black pl-2 rounded-md w-full lg:w-[500px]">
             <GrLocation />
-            <input
-              placeholder="Lokasi"
-              className="ml-2 bg-white w-full outline-none h-8 lg:h-10 rounded-r-md"
-            />
+            <Combobox value={selectedCountry} onChange={setSelectedCountry}>
+              <Combobox.Input
+                displayValue={(country: Country) =>
+                  country ? country!.name : ""
+                }
+                onChange={(event) => setCountry(event.target.value)}
+                className="ml-2 bg-white w-full outline-none h-8 lg:h-10 rounded-r-md"
+              />
+              <Transition
+                as={Fragment}
+                leave="transition ease-in duration-100"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+                afterLeave={() => setCountry("")}
+              >
+                <Combobox.Options
+                  className={
+                    "absolute bg-white max-h-[300px] overflow-scroll top-12 left-0 border w-full rounded-md"
+                  }
+                >
+                  {filteredCountry?.length === 0 && country !== "" ? (
+                    <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
+                      Nothing found.
+                    </div>
+                  ) : (
+                    filteredCountry?.map((country) => (
+                      <Combobox.Option
+                        key={country.id}
+                        value={country}
+                        className="hover:bg-blue hover:cursor-pointer hover:text-white p-2 rounded-md"
+                      >
+                        {country.name}
+                      </Combobox.Option>
+                    ))
+                  )}
+                </Combobox.Options>
+              </Transition>
+            </Combobox>
           </div>
           <button className="bg-green w-20 h-8 lg:h-10 rounded-md ml-5 hidden lg:block hover:opacity-75">
             <p className="text-black font-medium text-lg">Cari</p>
@@ -60,23 +129,25 @@ const Home = () => {
         <div className="lg:hidden">
           <Image
             src={Starting}
-            alt="complete"
+            alt="starting"
             objectFit="contain"
             width={"300px"}
             height={"300px"}
           />
         </div>
         <div className="flex flex-col lg:flex-1 items-center flex-shrink-0 mt-10 lg:mt-0 lg:border-r-[1px]">
-          <p className="text-2xl font-bold">130K+</p>
-          <p className="text-lg font-semibold">Tech Jobs</p>
+          <p className="text-2xl lg:text-4xl font-bold">130K+</p>
+          <p className="text-lg lg:text-xl font-semibold">Tech Jobs</p>
         </div>
         <div className="flex flex-col lg:flex-1 items-center my-5 lg:my-0 flex-shrink-0 lg:border-r-[1px]">
-          <p className="text-2xl font-bold">6,000,000</p>
-          <p className="text-lg font-semibold">Matches Made</p>
+          <p className="text-2xl lg:text-4xl font-bold">6,000,000</p>
+          <p className="text-lg lg:text-xl font-semibold">Matches Made</p>
         </div>
         <div className="flex flex-col lg:flex-1 items-center">
-          <p className="text-2xl font-bold">8M +</p>
-          <p className="text-center text-lg font-semibold">Candidates</p>
+          <p className="text-2xl lg:text-4xl font-bold">8M +</p>
+          <p className="text-center text-lg lg:text-xl font-semibold">
+            Candidates
+          </p>
         </div>
       </div>
     </div>

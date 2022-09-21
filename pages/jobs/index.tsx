@@ -102,29 +102,35 @@ function Jobs() {
             <OrderFilter onSort={onSort} sort={sort} />
           </div>
         </div>
-        <div className="w-full flex items-center mt-3 lg:mt-10">
-          {jobs.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
-              {jobs.map((job) => (
-                <JobCard key={job.id} job={job} />
-              ))}
-            </div>
-          ) : (
-            <div className="w-full my-10 flex flex-col items-center">
-              <Image
-                alt="unicorn"
-                src={Unicorn}
-                width="250px"
-                height="250px"
-                objectFit="contain"
-              />
-              <p className="text-center w-full text-lg font-semibold">
-                Sorry, your dream job is empty right now. <br /> Please come
-                back later!
-              </p>
-            </div>
-          )}
-        </div>
+        {jobsByCountryQuery.isLoading ? (
+          <div className="flex items-center justify-center py-20">
+            <p className="text-lg font-semibold">Serving your order...</p>
+          </div>
+        ) : (
+          <div className="w-full flex items-center mt-3 lg:mt-10">
+            {jobs.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                {jobs.map((job) => (
+                  <JobCard key={job.id} job={job} />
+                ))}
+              </div>
+            ) : (
+              <div className="w-full my-10 flex flex-col items-center">
+                <Image
+                  alt="unicorn"
+                  src={Unicorn}
+                  width="250px"
+                  height="250px"
+                  objectFit="contain"
+                />
+                <p className="text-center w-full text-lg font-semibold">
+                  Sorry, your dream job is empty right now. <br /> Please come
+                  back later!
+                </p>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

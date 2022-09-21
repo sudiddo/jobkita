@@ -81,9 +81,9 @@ function JobFilter({
       <div className="flex flex-col items-end w-full lg:w-auto mr-20 mt-3 lg:mt-0">
         <button
           onClick={onSubmit}
-          className="bg-green w-20 h-8 lg:h-10 rounded-md ml-5 hover:opacity-75"
+          className="bg-yellow w-20 h-8 lg:h-10 rounded-md ml-5 hover:opacity-75 hover:scale-110 transform transition-all duration-300"
         >
-          <p className="text-black font-medium text-lg">Cari</p>
+          <p className="text-black font-semibold text-lg">Cari</p>
         </button>
       </div>
     </div>

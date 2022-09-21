@@ -3,7 +3,8 @@ import { QueryClient } from "react-query";
 import { getSdk } from "./generated/graphql";
 
 const gqlClient = new GraphQLClient("https://api.graphql.jobs/");
-export const { getJobs, getCountries, getJobsByCountry } = getSdk(gqlClient);
+export const { getJobs, getCountries, getJobsByCountry, getJobDetails } =
+  getSdk(gqlClient);
 
 export const queryClient = new QueryClient({
   defaultOptions: {

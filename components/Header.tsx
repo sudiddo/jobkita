@@ -54,12 +54,12 @@ function Header() {
       </div>
       <div className="hidden lg:flex flex-row">
         <Link href="/jobs">
-          <p className="mr-10 text-lg font-semibold hover:opacity-75 text-black">
+          <p className="mr-10 text-lg font-semibold hover:opacity-50 text-black hover:cursor-pointer">
             For Employees
           </p>
         </Link>
         <Link href="/post-job">
-          <p className="text-lg font-semibold hover:opacity-75 text-black">
+          <p className="text-lg font-semibold hover:opacity-50 text-black hover:cursor-pointer">
             For Companies
           </p>
         </Link>

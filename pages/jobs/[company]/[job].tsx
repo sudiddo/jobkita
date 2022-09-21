@@ -1,9 +1,7 @@
 import moment from "moment";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import { IoLocationOutline, IoTimeOutline } from "react-icons/io5";
 import { dehydrate, useQuery } from "react-query";
 import { getJobDetails, queryClient } from "src/api";
 

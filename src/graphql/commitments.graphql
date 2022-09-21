@@ -1,0 +1,7 @@
+query getCommitments {
+  commitments {
+    id
+    title
+    slug
+  }
+}

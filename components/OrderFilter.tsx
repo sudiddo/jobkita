@@ -30,7 +30,7 @@ function OrderFilter({ sort, onSort }: Props) {
         >
           <Menu.Items
             className={
-              "bg-white absolute w-32 text-center right-0 flex flex-col border-black border rounded-md"
+              "bg-white absolute z-10 w-32 text-center right-0 flex flex-col border-black border rounded-md"
             }
           >
             <Menu.Item

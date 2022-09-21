@@ -1,0 +1,29 @@
+mutation PostJob(
+  $title: String!
+  $commitmentId: ID!
+  $companyName: String!
+  $locationNames: String!
+  $email: String!
+  $description: String!
+  $applyUrl: String!
+) {
+  postJob(
+    input: {
+      title: $title
+      commitmentId: $commitmentId
+      companyName: $companyName
+      locationNames: $locationNames
+      userEmail: $email
+      description: $description
+      applyUrl: $applyUrl
+    }
+  ) {
+    title
+    slug
+    company {
+      id
+      name
+      slug
+    }
+  }
+}

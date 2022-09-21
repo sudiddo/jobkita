@@ -3,5 +3,6 @@ query getCountries {
     id
     name
     isoCode
+    slug
   }
 }

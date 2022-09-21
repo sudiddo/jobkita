@@ -1,0 +1,37 @@
+query getJobsByCountry(
+  $country: String!
+  $job: String!
+  $orderBy: JobOrderByInput
+) {
+  country(input: { slug: $country }) {
+    id
+    jobs(where: { slug_contains: $job }, orderBy: $orderBy) {
+      id
+      title
+      postedAt
+      updatedAt
+      slug
+      cities {
+        id
+        name
+        slug
+      }
+      commitment {
+        id
+        title
+        slug
+      }
+      tags {
+        id
+        name
+        slug
+      }
+      company {
+        id
+        logoUrl
+        name
+        slug
+      }
+    }
+  }
+}

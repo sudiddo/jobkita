@@ -2,6 +2,9 @@
 
 Another job Listing Portal.
 
+Here's the demo link
+[Jobkita](https://jobkita-seven.vercel.app/)
+
 ## Feature List
 
     1. Homepage
@@ -35,6 +38,7 @@ Another job Listing Portal.
 - TailwindCSS
 - HeadlessUI
 - MomentJS
+- React Hook Form
 
 ## Run Locally
 
@@ -60,12 +64,4 @@ Start the server
 
 ```bash
   yarn dev
-```
-
-## Running Tests
-
-To run tests, run the following command
-
-```bash
-  yarn test
 ```

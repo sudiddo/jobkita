@@ -53,7 +53,7 @@ function Jobs() {
       const filtered =
         countries!.filter((data) => data.slug === country)[0] || countries![0];
       setSelectedCountry(filtered as Country);
-      setJobValue(String(job).toLowerCase() || "");
+      setJobValue(job ? String(job).toLowerCase() : "");
       setCountryValue(country ? (country as string) : "united-states");
     }
   }, [countriesQuery.data, country, countries, job]);

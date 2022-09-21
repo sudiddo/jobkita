@@ -36,7 +36,7 @@ function Jobs() {
   const [jobValue, setJobValue] = useState("");
   const countries = countriesQuery.data?.countries;
   const [sort, setSort] = useState<JobOrderByInput>(
-    JobOrderByInput.UpdatedAtDesc
+    JobOrderByInput.UpdatedAtAsc
   );
   const [jobs, setJobs] = useState<Job[]>([]);
 

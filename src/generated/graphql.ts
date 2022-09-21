@@ -1118,6 +1118,14 @@ export type GetJobsByCountryQueryVariables = Exact<{
 
 export type GetJobsByCountryQuery = { __typename?: 'Query', country: { __typename?: 'Country', id: string, jobs?: Array<{ __typename?: 'Job', id: string, title: string, postedAt: any, updatedAt: any, slug: string, cities?: Array<{ __typename?: 'City', id: string, name: string, slug: string }> | null, commitment: { __typename?: 'Commitment', id: string, title: string, slug: string }, tags?: Array<{ __typename?: 'Tag', id: string, name: string, slug: string }> | null, company?: { __typename?: 'Company', id: string, logoUrl?: string | null, name: string, slug: string } | null }> | null } };
 
+export type GetJobDetailsQueryVariables = Exact<{
+  company: Scalars['String'];
+  job: Scalars['String'];
+}>;
+
+
+export type GetJobDetailsQuery = { __typename?: 'Query', job: { __typename?: 'Job', id: string, title: string, slug: string, description?: string | null, applyUrl?: string | null, postedAt: any, commitment: { __typename?: 'Commitment', id: string, title: string }, company?: { __typename?: 'Company', id: string, name: string, logoUrl?: string | null, websiteUrl: string, updatedAt: any } | null } };
+
 export type GetJobsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1169,6 +1177,29 @@ export const GetJobsByCountryDocument = gql`
   }
 }
     `;
+export const GetJobDetailsDocument = gql`
+    query getJobDetails($company: String!, $job: String!) {
+  job(input: {jobSlug: $job, companySlug: $company}) {
+    id
+    title
+    slug
+    description
+    commitment {
+      id
+      title
+    }
+    applyUrl
+    company {
+      id
+      name
+      logoUrl
+      websiteUrl
+      updatedAt
+    }
+    postedAt
+  }
+}
+    `;
 export const GetJobsDocument = gql`
     query getJobs {
   jobs {
@@ -1206,6 +1237,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     getJobsByCountry(variables: GetJobsByCountryQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetJobsByCountryQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetJobsByCountryQuery>(GetJobsByCountryDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getJobsByCountry', 'query');
+    },
+    getJobDetails(variables: GetJobDetailsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetJobDetailsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetJobDetailsQuery>(GetJobDetailsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getJobDetails', 'query');
     },
     getJobs(variables?: GetJobsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetJobsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetJobsQuery>(GetJobsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getJobs', 'query');

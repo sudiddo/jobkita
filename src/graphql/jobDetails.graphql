@@ -1,0 +1,21 @@
+query getJobDetails($company: String!, $job: String!) {
+  job(input: { jobSlug: $job, companySlug: $company }) {
+    id
+    title
+    slug
+    description
+    commitment {
+      id
+      title
+    }
+    applyUrl
+    company {
+      id
+      name
+      logoUrl
+      websiteUrl
+      updatedAt
+    }
+    postedAt
+  }
+}

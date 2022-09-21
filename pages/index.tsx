@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import JobFilter from "components/JobFilter";
 
 export async function getServerSideProps() {
-  await queryClient.prefetchQuery(["jobs"], () => getCountries());
+  await queryClient.prefetchQuery(["countries"], () => getCountries());
 
   return {
     props: {

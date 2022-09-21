@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { dehydrate, useQuery } from "react-query";
 import { getCountries, getJobsByCountry, queryClient } from "src/api";
 import { Country, Job, JobOrderByInput } from "src/generated/graphql";
-import JobCard from "components/jobs/jobCard";
+import JobCard from "components/jobs/JobCard";
 import OrderFilter from "components/OrderFilter";
 import Image from "next/image";
 import Unicorn from "src/assets/unicorn.png";

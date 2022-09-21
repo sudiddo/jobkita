@@ -39,28 +39,30 @@ function Header() {
               }
             >
               <Menu.Item as={"div"} className="py-2">
-                <a href="/jobs">For Employees</a>
+                <Link href="/jobs">
+                  <p>For Employees</p>
+                </Link>
               </Menu.Item>
               <Menu.Item as={"div"} className="py-2">
-                <a href="/post-job">For Companies</a>
+                <Link href="/post-job">
+                  <p>For Companies</p>
+                </Link>
               </Menu.Item>
             </Menu.Items>
           </Transition>
         </Menu>
       </div>
       <div className="hidden lg:flex flex-row">
-        <a
-          className="mr-10 text-lg font-semibold hover:opacity-75 text-black"
-          href="/jobs"
-        >
-          For Employees
-        </a>
-        <a
-          className="text-lg font-semibold hover:opacity-75 text-black"
-          href="/post-job"
-        >
-          For Companies
-        </a>
+        <Link href="/jobs">
+          <p className="mr-10 text-lg font-semibold hover:opacity-75 text-black">
+            For Employees
+          </p>
+        </Link>
+        <Link href="/post-job">
+          <p className="text-lg font-semibold hover:opacity-75 text-black">
+            For Companies
+          </p>
+        </Link>
       </div>
     </div>
   );

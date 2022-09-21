@@ -55,28 +55,33 @@ function PostJob() {
   };
 
   return (
-    <div className="w-full px-5 py-10">
+    <div className="w-full px-5 py-10 lg:px-20">
       <Modal isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
       <div className="flex flex-col">
-        <p className="text-4xl font-bold mb-10">
-          Hire candidates that want to help build your vision
+        <p className="text-4xl lg:text-6xl font-bold mb-10">
+          Hire candidates that <br className="hidden lg:block" /> want to help
+          build your vision
         </p>
-        <p className="text-xl mb-10">
+        <p className="text-xl lg:text-2xl mb-10">
           8 million startup-ready candidates from around the world, unique
+          <br className="hidden lg:block" />
           details you can&apos;t find anywhere else, and all the tools you need
-          to hire - get everything set up in 10 minutes, for free.
+          to hire - get everything <br className="hidden lg:block" />
+          set up in 10 minutes, for free.
         </p>
       </div>
       <div>
-        <p className="text-xl font-semibold">Let&apos;s get started!</p>
+        <p className="text-xl lg:text-2xl font-semibold">
+          Let&apos;s get started!
+        </p>
         <form
           className="w-full flex flex-col"
           onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}
         >
-          <div className="mt-5 flex flex-col">
-            <p className="mb-2 font-semibold">Title</p>
+          <div className="mt-5 lg:mt-10 flex flex-col">
+            <p className="mb-2 lg:text-xl font-semibold">Title</p>
             <input
-              className="border h-10 px-3 rounded-md"
+              className="border lg:h-14 lg:text-xl h-10 px-3 rounded-md"
               defaultValue=""
               placeholder='Job title such as "Frontend Engineer"'
               {...register("title", { required: true })}
@@ -87,11 +92,11 @@ function PostJob() {
             )}
           </div>
 
-          <div className="mt-5 flex flex-col">
-            <p className="mb-2 font-semibold">Commitment</p>
+          <div className="mt-5 lg:mt-10 flex flex-col">
+            <p className="mb-2 lg:text-xl font-semibold">Commitment</p>
             <Menu as="div" className={"relative inline-block w-full"}>
               <Menu.Button className={"w-full"}>
-                <div className="border h-10 px-3 flex items-center rounded-md w-full text-left">
+                <div className="border lg:h-14 h-10 px-3 lg:text-xl flex items-center rounded-md w-full text-left">
                   {commitment?.title}
                 </div>
               </Menu.Button>
@@ -114,7 +119,7 @@ function PostJob() {
                       as={"div"}
                       onClick={() => setCommitment(commitment as Commitment)}
                       key={commitment.id}
-                      className="py-2 w-full px-3"
+                      className="py-2 w-full px-3 lg:text-xl"
                     >
                       <p>{commitment.title}</p>
                     </Menu.Item>
@@ -124,10 +129,10 @@ function PostJob() {
             </Menu>
           </div>
 
-          <div className="mt-5 flex flex-col">
-            <p className="mb-2 font-semibold">Company Name</p>
+          <div className="mt-5 lg:mt-10 flex flex-col">
+            <p className="mb-2 lg:text-xl font-semibold">Company Name</p>
             <input
-              className="border h-10 px-3 rounded-md"
+              className="border lg:h-14 lg:text-xl h-10 px-3 rounded-md"
               defaultValue=""
               placeholder="Google"
               {...register("companyName", { required: true })}
@@ -138,10 +143,10 @@ function PostJob() {
             )}
           </div>
 
-          <div className="mt-5 flex flex-col">
-            <p className="mb-2 font-semibold">Location</p>
+          <div className="mt-5 lg:mt-10 flex flex-col">
+            <p className="mb-2 lg:text-xl font-semibold">Location</p>
             <input
-              className="border h-10 px-3 rounded-md"
+              className="border lg:h-14 lg:text-xl h-10 px-3 rounded-md"
               defaultValue=""
               placeholder="Jakarta"
               {...register("locationNames", { required: true })}
@@ -152,10 +157,10 @@ function PostJob() {
             )}
           </div>
 
-          <div className="mt-5 flex flex-col">
-            <p className="mb-2 font-semibold">Email</p>
+          <div className="mt-5 lg:mt-10 flex flex-col">
+            <p className="mb-2 lg:text-xl font-semibold">Email</p>
             <input
-              className="border h-10 px-3 rounded-md"
+              className="border lg:h-14 lg:text-xl h-10 px-3 rounded-md"
               defaultValue=""
               placeholder="john@doe.com"
               {...register("email", { required: true })}
@@ -166,10 +171,10 @@ function PostJob() {
             )}
           </div>
 
-          <div className="mt-5 flex flex-col">
-            <p className="mb-2 font-semibold">Description</p>
+          <div className="mt-5 lg:mt-10 flex flex-col">
+            <p className="mb-2 lg:text-xl font-semibold">Description</p>
             <textarea
-              className="border h-40 p-3 rounded-md"
+              className="border lg:h-56 h-40 lg:text-xl px-3 rounded-md"
               defaultValue=""
               placeholder="Write the job description here"
               {...register("description", { required: true })}
@@ -180,10 +185,10 @@ function PostJob() {
             )}
           </div>
 
-          <div className="mt-5 flex flex-col">
-            <p className="mb-2 font-semibold">Apply URL</p>
+          <div className="mt-5 lg:mt-10 flex flex-col">
+            <p className="mb-2 lg:text-xl font-semibold">Apply URL</p>
             <input
-              className="border h-10 px-3 rounded-md"
+              className="border lg:h-14 lg:text-xl h-10 px-3 rounded-md"
               defaultValue=""
               placeholder="https://google.com/careers"
               {...register("applyUrl", { required: true })}
@@ -195,7 +200,7 @@ function PostJob() {
           </div>
 
           <input
-            className="mt-5 bg-blue text-white h-10 rounded-md"
+            className="mt-5 lg:mt-10 bg-blue text-white h-10 lg:h-14 lg:text-xl lg:font-bold rounded-md hover:cursor-pointer hover:opacity-75 hover:scale-105 transform duration-300"
             type="submit"
           />
         </form>

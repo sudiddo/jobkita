@@ -46,7 +46,7 @@ const Home = () => {
         jobValue !== ""
           ? {
               country: selectedCountry?.slug,
-              job: jobValue,
+              job: jobValue.toLowerCase(),
             }
           : {
               country: selectedCountry?.slug,

@@ -34,7 +34,13 @@ function JobFilter({
             value={jobValue}
             onChange={(e) => setJobValue(e.target.value)}
             className="ml-2 bg-white w-full outline-none h-8 lg:h-10 rounded-r-md"
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                onSubmit();
+              }
+            }}
           />
+          <input type="submit" hidden />
         </div>
         <div className="relative mt-3 lg:mt-0 flex flex-row items-center border border-black pl-2 rounded-md w-full lg:w-[400px]">
           <GrLocation />

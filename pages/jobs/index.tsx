@@ -16,7 +16,7 @@ export async function getServerSideProps(ctx: {
   await queryClient.prefetchQuery(["jobsByCountry"], () =>
     getJobsByCountry({
       country: ctx.query.country || "united-states",
-      job: ctx.query.job || "",
+      job: ctx.query.job?.toLowerCase() || "",
       orderBy: JobOrderByInput.UpdatedAtDesc,
     })
   );
@@ -43,7 +43,7 @@ function Jobs() {
   const jobsByCountryQuery = useQuery(["jobsByCountry"], () =>
     getJobsByCountry({
       country: (selectedCountry?.slug as string) || countryValue,
-      job: jobValue,
+      job: jobValue.toLowerCase(),
       orderBy: sort,
     })
   );
@@ -53,7 +53,7 @@ function Jobs() {
       const filtered =
         countries!.filter((data) => data.slug === country)[0] || countries![0];
       setSelectedCountry(filtered as Country);
-      setJobValue((job as string) || "");
+      setJobValue(String(job).toLowerCase() || "");
       setCountryValue(country ? (country as string) : "united-states");
     }
   }, [countriesQuery.data, country, countries, job]);

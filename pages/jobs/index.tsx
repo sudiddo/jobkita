@@ -6,6 +6,8 @@ import { getCountries, getJobsByCountry, queryClient } from "src/api";
 import { Country, Job, JobOrderByInput } from "src/generated/graphql";
 import JobCard from "components/jobs/jobCard";
 import OrderFilter from "components/OrderFilter";
+import Image from "next/image";
+import Unicorn from "src/assets/unicorn.png";
 
 export async function getServerSideProps(ctx: {
   query: { country: string | undefined; job: string | undefined };
@@ -108,10 +110,19 @@ function Jobs() {
               ))}
             </div>
           ) : (
-            <p className="text-center w-full my-24">
-              Sorry, your dream job is empty right now. <br /> Please come back
-              later!
-            </p>
+            <div className="w-full my-10 flex flex-col items-center">
+              <Image
+                alt="unicorn"
+                src={Unicorn}
+                width="250px"
+                height="250px"
+                objectFit="contain"
+              />
+              <p className="text-center w-full text-lg font-semibold">
+                Sorry, your dream job is empty right now. <br /> Please come
+                back later!
+              </p>
+            </div>
           )}
         </div>
       </div>

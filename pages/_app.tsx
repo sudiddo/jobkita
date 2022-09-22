@@ -5,14 +5,18 @@ import { queryClient } from "src/api";
 import Layout from "components/Layout";
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { Router } from "next/router";
+import { Router, useRouter } from "next/router";
 import PageLoading from "components/PageLoading";
+import { logEvent } from "firebase/analytics";
+import analytics from "src/analytics";
 
 function MyApp({
   Component,
   pageProps,
 }: AppProps<{ dehydratedState: DehydratedState }>) {
   const [loading, setLoading] = useState(false);
+  const { pathname } = useRouter();
+
   useEffect(() => {
     const start = () => {
       setLoading(true);
@@ -29,6 +33,12 @@ function MyApp({
       Router.events.off("routeChangeError", end);
     };
   }, []);
+
+  useEffect(() => {
+    logEvent(analytics, "page_view", {
+      page_path: pathname,
+    });
+  }, [pathname]);
 
   return (
     <>
